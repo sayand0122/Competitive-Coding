@@ -1,2 +1,2 @@
 # Competitive-Coding
-Repo to keep track of my competitive coding progress
+This repo contains the answers for the attended question in different coding competitons
