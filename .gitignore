@@ -1,2 +1,4 @@
 Reference pdfs/
 *.xlsx
+.vscode
+.cph
