@@ -1,3 +1,6 @@
+// Question :- You have been given an array that contains both positive and negative numbers from range -MAX to +MAX
+//             Our task is to SEARCH whether an element is present or not in O(1) time
+
 #include <bits/stdc++.h>
 using namespace std;
 
