@@ -3,9 +3,13 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#define fastio                        \
-    ios_base::sync_with_stdio(false); \
+#define fastio                                                                                                         \
+    ios_base::sync_with_stdio(false);                                                                                  \
     cin.tie(NULL)
+
+#define endl "\n"
+
+using namespace std;
 
 int main()
 {
@@ -14,26 +18,15 @@ int main()
     cin >> t;
     while (t--)
     {
-        long long int n;
+        int n;
         cin >> n;
-        long long int a[n];
-        long long int max = INT_MIN;
-        long long int min = INT_MAX;
+        int a[n];
         for (int i = 0; i < n; i++)
-        {
             cin >> a[i];
-            if (a[i] > max)
-            {
-                max = a[i];
-            }
-            if (a[i] < min)
-            {
-                min = a[i];
-            }
-        }
-        long long int res = max - min;
-        res *= 2;
+        sort(a, a + n);
+        int res = abs(a[n - 1] - a[n - 2]) + abs(a[n - 2] - a[n - 3]) + abs(a[n - 3] - a[n - 1]);
         cout << res << endl;
     }
+
     return 0;
 }
