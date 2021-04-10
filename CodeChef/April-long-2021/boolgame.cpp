@@ -41,19 +41,19 @@ void solve()
 {
     ll n, m, k;
     cin >> n >> m >> k;
-    vl g(n + 1);
+    vl arr(n + 1);
     F0R(i, n)
     {
-        cin >> g[i + 1];
+        cin >> arr[i + 1];
     }
 
-    vector<vpl> arr(n + 1);
+    vector<vpl> sup(n + 1);
     F0R(i, m)
     {
         ll u, v, d;
         cin >> u >> v >> d;
-        arr[u].pb(mp(i, d));
-        arr[v].pb(mp(i, d));
+        sup[u].pb(mp(i, d));
+        sup[v].pb(mp(i, d));
     }
 
     vector<vpl> dp(n + 1);
@@ -62,36 +62,36 @@ void solve()
     {
         vpl temp;
         temp.insert(temp.end(), all(dp[i - 1]));
-        ll cur = 0, mask = 0;
-        set<ll> open;
+        ll cur = 0, msk = 0;
+        set<ll> op;
         RFor(j, i, 1)
         {
-            cur += g[j];
-            mask ^= 1LL << j;
-            for (auto &[idx, w] : arr[j])
+            cur += arr[j];
+            msk ^= 1LL << j;
+            for (auto &[idx, z] : sup[j])
             {
-                if (open.count(idx))
-                    cur += w;
+                if (op.count(idx))
+                    cur += z;
                 else
-                    open.insert(idx);
+                    op.insert(idx);
             }
             if (j > 1)
-                for (auto &[val, old_mask] : dp[j - 2])
-                    temp.pb(mp(val + cur, mask ^ old_mask));
+                for (auto &[val, old_msk] : dp[j - 2])
+                    temp.pb(mp(val + cur, msk ^ old_msk));
             else
-                temp.pb(mp(cur, mask));
+                temp.pb(mp(cur, msk));
         }
         sort(all(temp));
         reverse(all(temp));
-        set<ll> sel;
-        ll filled = 0;
-        for (ll j = 0; j < temp.size() and filled < k; j++)
+        set<ll> sup1;
+        ll fill = 0;
+        for (ll j = 0; j < temp.size() and fill < k; j++)
         {
-            if (sel.count(temp[j].s))
+            if (sup1.count(temp[j].s))
                 continue;
             dp[i].pb(temp[j]);
-            filled++;
-            sel.insert(temp[j].s);
+            fill++;
+            sup1.insert(temp[j].s);
         }
     }
     F0R(i, k)
